@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import CustomInput from './CustomInput';
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }: any) {
   const [eposta, epostaAyarla] = useState('');
   const [sifre, sifreAyarla] = useState('');
 
   const girisButonunaBasildi = () => {
     console.log('E-posta:', eposta);
     console.log('Şifre:', sifre);
-    // İstersen hoca baksın diye küçük bir uyarı da gösterebilirsin:
-    // Alert.alert('Bilgi', 'Değerler konsola yazdırıldı.');
+    navigation.navigate("Home");   // → HomeScreen'e git
+  };
+
+  const kayitEkraninaGit = () => {
+    navigation.navigate("Register");  // → RegisterScreen'e git
   };
 
   return (
@@ -32,8 +35,14 @@ export default function LoginScreen() {
         secureTextEntry
       />
 
+      {/* Giriş Yap */}
       <TouchableOpacity style={stiller.buton} onPress={girisButonunaBasildi}>
         <Text style={stiller.butonMetni}>Giriş Yap</Text>
+      </TouchableOpacity>
+
+      {/* Kayıt Ol */}
+      <TouchableOpacity style={stiller.buton} onPress={kayitEkraninaGit}>
+        <Text style={stiller.butonMetni}>Kayıt Ol</Text>
       </TouchableOpacity>
     </View>
   );
