@@ -1,40 +1,35 @@
 import React from 'react';
 import { View, TextInput, StyleSheet, TextInputProps } from 'react-native';
 
-type Ozellikler = {
+type Props = {
   placeholder?: string;
   value?: string;
-  onChangeText?: (yeniMetin: string) => void;
+  onChangeText?: (text: string) => void;
   secureTextEntry?: boolean;
 } & TextInputProps;
 
-export default function CustomInput({
-  placeholder,
-  value,
-  onChangeText,
-  secureTextEntry,
-  ...diger
-}: Ozellikler) {
+export default function CustomInput({ placeholder, value, onChangeText, secureTextEntry, ...rest }: Props) {
   return (
-    <View style={stiller.kutuDis}>
+    <View style={styles.container}>
       <TextInput
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
-        style={stiller.girdi}
-        {...diger}
+        style={styles.input}
+        placeholderTextColor="#6b7280"
+        {...rest}
       />
     </View>
   );
 }
 
-const stiller = StyleSheet.create({
-  kutuDis: {
+const styles = StyleSheet.create({
+  container: {
     width: '100%',
     marginBottom: 12,
   },
-  girdi: {
+  input: {
     width: '100%',
     borderWidth: 1,
     borderColor: '#d1d5db',
