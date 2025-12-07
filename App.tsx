@@ -1,17 +1,36 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import LoginScreen from './components/LoginScreen';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-function App() {
+import LoginScreen from "./components/LoginScreen";
+import RegisterScreen from "./components/RegisterScreen";
+import HomeScreen from "./components/HomeScreen";
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
   return (
-    <View style={stiller.kapsayici}>
-      <LoginScreen />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        
+        <Stack.Screen 
+          name="Login" 
+          component={LoginScreen}
+          options={{ title: "Giriş Yap" }}
+        />
+
+        <Stack.Screen 
+          name="Register" 
+          component={RegisterScreen}
+          options={{ title: "Kayıt Ol" }}
+        />
+
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen}
+          options={{ title: "Home" }}
+        />
+
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const stiller = StyleSheet.create({
-  kapsayici: { flex: 1, backgroundColor: '#fff' },
-});
-
-export default App;
